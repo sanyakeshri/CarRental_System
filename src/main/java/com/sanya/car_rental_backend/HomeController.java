@@ -8,7 +8,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String home() {
-        return "Car Rental System Running";
+        return "Car Rental System is Running";
     }
 
 }
