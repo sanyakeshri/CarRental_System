@@ -45,5 +45,28 @@ import java.util.Date;
                     .compact();
 
         }
+        public static boolean validateToken(
+                String token
+        ){
+
+            try{
+
+                Jwts.parser()
+
+                        .verifyWith(key)
+
+                        .build()
+
+                        .parseSignedClaims(token);
+
+                return true;
+
+            }catch(Exception e){
+
+                return false;
+
+            }
+
+        }
 
     }
