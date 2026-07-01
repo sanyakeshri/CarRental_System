@@ -19,7 +19,6 @@ import java.util.Date;
                 );
 
 
-
         public static String generateToken(
                 String email
         ){
