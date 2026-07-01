@@ -6,43 +6,29 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-
 public class ProjectSecurityConfig {
 
     @Bean
-
-    SecurityFilterChain security(
-            HttpSecurity http
-    )
-            throws Exception{
+    SecurityFilterChain security(HttpSecurity http) throws Exception {
 
         http
+                .csrf(csrf -> csrf.disable())
 
-                .csrf(
-                        csrf
-                                ->csrf.disable()
-                )
+                .authorizeHttpRequests(auth -> auth
 
-                .authorizeHttpRequests(
+                        .requestMatchers(
+                                "/users/register",
+                                "/auth/login"
+                        )
 
-                        auth
-                                ->auth
+                        .permitAll()
 
-                                .requestMatchers(
-                                        "/users/register",
-                                        "/auth/login"
-                                )
+                        .anyRequest()
 
-                                .permitAll()
-
-                                .anyRequest()
-
-                                .permitAll()
+                        .permitAll()
 
                 );
 
         return http.build();
-
     }
-
 }

@@ -17,9 +17,10 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    // SAVE USER
+    // REGISTER USER
     public User registerUser(User user) {
 
+        // Encrypt password before saving
         user.setPassword(
                 passwordEncoder.encode(
                         user.getPassword()
