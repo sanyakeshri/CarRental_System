@@ -26,7 +26,7 @@ public class Controller {
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
-
+    
     // GET USER BY EMAIL
     @GetMapping("/{email}")
     public User getByEmail(@PathVariable String email) {
