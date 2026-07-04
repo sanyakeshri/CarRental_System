@@ -1,6 +1,5 @@
-package com.sanya.car_rental_backend.config;
+package com.sanya.car_rental_backend.security;
 
-import com.sanya.car_rental_backend.security.JwtFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
