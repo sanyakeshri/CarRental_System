@@ -32,6 +32,33 @@ public class BookingController {
         );
     }
 
+    // APPROVE BOOKING
+    @PutMapping("/approve/{id}")
+    public Booking approveBooking(
+            @PathVariable Long id) {
+
+        return bookingService.approveBooking(id);
+
+    }
+
+    // REJECT BOOKING
+    @PutMapping("/reject/{id}")
+    public Booking rejectBooking(
+            @PathVariable Long id) {
+
+        return bookingService.rejectBooking(id);
+
+    }
+
+    // GET BOOKINGS BY STATUS
+    @GetMapping("/status/{status}")
+    public List<Booking> getBookingsByStatus(
+            @PathVariable String status) {
+
+        return bookingService.getBookingsByStatus(status);
+
+    }
+
     @GetMapping
     public List<Booking> getAllBookings() {
         return bookingService.getAllBookings();
