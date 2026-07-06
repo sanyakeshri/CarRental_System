@@ -41,6 +41,7 @@ public class BookingController {
 
     }
 
+
     // REJECT BOOKING
     @PutMapping("/reject/{id}")
     public Booking rejectBooking(
