@@ -27,12 +27,34 @@ public class BookingService {
         this.userRepository = userRepository;
     }
 
+    // BOOK A CAR
     public Booking createBooking(Long userId,
                                  Long carId,
                                  Booking booking) {
 
-        User user = userRepository.findById(userId).orElseThrow();
-        Car car = carRepository.findById(carId).orElseThrow();
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User Not Found"));
+
+        Car car = carRepository.findById(carId)
+                .orElseThrow(() -> new RuntimeException("Car Not Found"));
+
+        // Check whether the car is already booked for selected dates
+        List<Booking> existingBookings =
+                bookingRepository.findByCarId(carId);
+
+        for (Booking b : existingBookings) {
+
+            boolean isOverlapping =
+                    booking.getFromDate().isBefore(b.getToDate())
+                            &&
+                            booking.getToDate().isAfter(b.getFromDate());
+
+            if (isOverlapping) {
+                throw new RuntimeException(
+                        "Car already booked for selected dates"
+                );
+            }
+        }
 
         booking.setUser(user);
         booking.setCar(car);
@@ -41,6 +63,7 @@ public class BookingService {
         return bookingRepository.save(booking);
     }
 
+    // GET ALL BOOKINGS
     public List<Booking> getAllBookings() {
         return bookingRepository.findAll();
     }
@@ -89,4 +112,24 @@ public class BookingService {
         bookingRepository.deleteById(id);
     }
 
+    public List<Booking> getBookingsByUser(Long userId) {
+
+        return bookingRepository.findByUserId(userId);
+    }
+    public Booking cancelBooking(Long bookingId) {
+
+        Booking booking = bookingRepository
+                .findById(bookingId)
+                .orElseThrow();
+
+        if (!booking.getStatus().equals("PENDING")) {
+            throw new RuntimeException(
+                    "Only pending bookings can be cancelled."
+            );
+        }
+
+        booking.setStatus("CANCELLED");
+
+        return bookingRepository.save(booking);
+    }
 }

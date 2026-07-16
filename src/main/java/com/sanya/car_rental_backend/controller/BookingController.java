@@ -64,4 +64,17 @@ public class BookingController {
     public List<Booking> getAllBookings() {
         return bookingService.getAllBookings();
     }
+
+    @GetMapping("/user/{userId}")
+    public List<Booking> getBookingsByUser(
+            @PathVariable Long userId) {
+
+        return bookingService.getBookingsByUser(userId);
+    }
+    @PutMapping("/cancel/{id}")
+    public Booking cancelBooking(
+            @PathVariable Long id) {
+
+        return bookingService.cancelBooking(id);
+    }
 }

@@ -1,6 +1,5 @@
 package com.sanya.car_rental_backend.Security;
 
-import com.sanya.car_rental_backend.Security.CustomUserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

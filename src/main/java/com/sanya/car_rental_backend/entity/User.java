@@ -1,5 +1,6 @@
 package com.sanya.car_rental_backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,12 +15,14 @@ public class User {
                     GenerationType.IDENTITY
     )
 
+
     private Long id;
 
     private String name;
 
     private String email;
 
+    @JsonIgnore
     private String password;
 
 

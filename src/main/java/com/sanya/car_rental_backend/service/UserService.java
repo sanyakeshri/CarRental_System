@@ -32,11 +32,13 @@ public class UserService {
 
     // GET ALL USERS
     public List<User> getAllUsers() {
+
         return userRepository.findAll();
     }
 
     // GET USER BY EMAIL
     public User getUserByEmail(String email) {
+
         return userRepository.findByEmail(email);
     }
 }

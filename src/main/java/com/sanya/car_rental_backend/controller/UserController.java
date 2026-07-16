@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 @CrossOrigin(origins = "*")
-public class Controller {
+public class UserController {
 
     @Autowired
     private UserService userService;
@@ -18,6 +18,7 @@ public class Controller {
     // REGISTER USER
     @PostMapping("/register")
     public User register(@RequestBody User user) {
+
         return userService.registerUser(user);
     }
 
@@ -26,7 +27,7 @@ public class Controller {
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
-    
+
     // GET USER BY EMAIL
     @GetMapping("/{email}")
     public User getByEmail(@PathVariable String email) {
